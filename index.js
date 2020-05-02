@@ -41,7 +41,25 @@ class Airplane {
 */
 
 class Person {
+  constructor(name, age){
+    this.name = name;
+    this.age = age;
+    this.stomach = [];
+  }
+   eat(someFood){
+      this.stomach.push(someFood)
+   }
 
+   poop(){
+     if( this.stomach.length != 10){
+       this.stomach.splice(0, this.stomach.length)
+     }
+
+    toString(){
+      return `${this.name}, ${this.age}`
+    }
+
+   }
 }
 
 /*
@@ -59,6 +77,15 @@ class Person {
 */
 
 class Car {
+  constructor(mode, milesPerGallon){
+    this.mode = mode;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+    fill(gallons){
+        this.tank = this.tank + gallons;
+    }
 
 }
 
@@ -75,7 +102,14 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
-
+    constructor(object){
+      this.name = object.name;
+      this.age = object.age;
+      this.location = object.location;
+    }
+    speak(){
+      `Hello my name is ${this.name}, I am from ${this.location}`
+    }
 }
 
 /*
@@ -92,9 +126,24 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
 
+class Instructor extends Lambdasian{
+  constructor(object){
+    super(object);
+    this.specialty = 'redux';
+    this.favLanguage = 'JavaScript';
+    this.catchPhrase = `Dont forget the homies`;
+  }
+  demo(subject){
+      return `Today we are learning about ${subject} where the subject is the param passed in.`
+  }
+
+  grade(subject){
+        return `${this.name} receives a perfect score on ${subject}`
+  }
 }
+
+
 
 /*
   TASK 5
@@ -111,7 +160,24 @@ class Instructor {
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
+class Student extends Lambdasian{
+  constructor(object){
+    super(object);
+    this.previousBackground = 'Forex Trader';
+    this.className = 'CS132';
+    this.favSubjects =  ['HTML', 'CSS', 'JS'];
+  }
+    listSubjects(){
+        return `Loving ${this.favSubjects}!`
+    }
+
+    PRAssignment(subject){
+        return `${this.name} has submitted a PR for ${subject}`
+    }
+
+    sprintChallenge(subject){
+        return `${this.name} has begun sprint challend on ${subject}`
+    }
 
 }
 
